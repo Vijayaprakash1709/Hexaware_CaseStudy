@@ -9,7 +9,7 @@ namespace Pay_Xpert.Services.Interfaces
 {
     internal interface ITaxService
     {
-        Tax CalculateTax(int employeeId, int taxYear);
+        decimal CalculateTax(int employeeId, int taxYear);
         Tax GetTaxById(int taxId);
         List<Tax> GetTaxesForEmployee(int employeeId);
         List<Tax> GetTaxesForYear(int taxYear);

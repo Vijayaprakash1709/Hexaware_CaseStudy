@@ -8,7 +8,9 @@ namespace Pay_Xpert
         public void dashboard()
         {
             //EmployeeUI.employee();
-            PayrollUI.payroll();
+            //PayrollUI.payroll();
+            //TaxUI.tax();
+            FinancialRecordsUI.financialRecords();
         }
 
 

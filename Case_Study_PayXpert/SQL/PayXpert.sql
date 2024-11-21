@@ -78,3 +78,15 @@ select * from Employee
 select * from Payroll
 select * from tax
 select * from FinancialRecord
+
+
+select 
+    sum(p.NetSalary) as TotalNetSalary,
+    Year as Year,
+    EmployeeID as EmployeeID
+from 
+    Payroll p
+where 
+    p.EmployeeID = 1
+    and year(p.PayPeriodStartDate) = 2024;
+
