@@ -26,11 +26,15 @@ namespace Pay_Xpert.Services
 
                 decimal taxAmount = _taxService.CalculateTax(employeeId, taxYear);
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Calculated Tax for Employee {employeeId} in Year {taxYear}: {taxAmount}");
+                Console.ResetColor();
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error calculating tax: {ex.Message}");
+                Console.ResetColor();
             }
         }
 
@@ -48,12 +52,16 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No tax record found for the given Tax ID.");
+                    Console.ResetColor();
                 }
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error retrieving tax details: {ex.Message}");
+                Console.ResetColor();
             }
         }
 
@@ -72,15 +80,22 @@ namespace Pay_Xpert.Services
                         DisplayTaxDetails(tax);
                         Console.WriteLine("========================================");
                     }
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Taxes retrieved successfully.");
+                    Console.ResetColor();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No tax records found for the given Employee ID.");
+                    Console.ResetColor();
                 }
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error retrieving taxes for employee: {ex.Message}");
+                Console.ResetColor();
             }
         }
 
@@ -99,15 +114,22 @@ namespace Pay_Xpert.Services
                         DisplayTaxDetails(tax);
                         Console.WriteLine("========================================");
                     }
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Taxes retrieved successfully.");
+                    Console.ResetColor();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No tax records found for the given year.");
+                    Console.ResetColor();
                 }
             }
             catch (Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error retrieving taxes for year: {ex.Message}");
+                Console.ResetColor();
             }
         }
 

@@ -14,14 +14,15 @@ namespace Pay_Xpert.UI
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("-------------------- Employee Management System --------------------");
-                Console.WriteLine("1. Add Employee");
-                Console.WriteLine("2. View All Employees");
-                Console.WriteLine("3. Get Employee by ID");
-                Console.WriteLine("4. Update Employee");
-                Console.WriteLine("5. Remove Employee");
-                Console.WriteLine("6. Exit");
-                Console.Write("Enter your choice: ");
+                Console.WriteLine("\n\t-------------------- Employee Management --------------------");
+                Console.WriteLine("\n\n    1. Add Employee");
+                Console.WriteLine("    2. View All Employees");
+                Console.WriteLine("    3. Get Employee by ID");
+                Console.WriteLine("    4. Update Employee");
+                Console.WriteLine("    5. Remove Employee");
+                Console.WriteLine("    6. Exit");
+                Console.WriteLine("\n-----------------------------------------------------------");
+                Console.Write("\nEnter your choice: ");
 
                 int choice = int.Parse(Console.ReadLine());
 

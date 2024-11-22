@@ -1,6 +1,7 @@
 ﻿using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Services.Interfaces;
+using System;
 using System.Globalization;
 
 namespace Pay_Xpert.Services
@@ -31,11 +32,11 @@ namespace Pay_Xpert.Services
                 string recordType = Console.ReadLine();
 
                 _financialRecordService.AddFinancialRecord(employeeId, description, amount, recordType);
-                Console.WriteLine("Financial record added successfully.");
+                ShowSuccessMessage("Financial record added successfully.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage($"Error: {ex.Message}");
             }
         }
 
@@ -53,12 +54,12 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No financial record found for the given Record ID.");
+                    ShowErrorMessage("No financial record found for the given Record ID.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage("No financial record found for the given Record ID");
             }
         }
 
@@ -80,12 +81,12 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No financial records found for the given Employee ID.");
+                    ShowErrorMessage("No financial records found for the given Employee ID.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage("No financial records found for the given Employee ID.");
             }
         }
 
@@ -107,12 +108,12 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No financial records found for the given date.");
+                    ShowErrorMessage("No financial records found for the given date.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage($"Error: {ex.Message}");
             }
         }
 
@@ -124,6 +125,20 @@ namespace Pay_Xpert.Services
             Console.WriteLine($"Description: {record.Description}");
             Console.WriteLine($"Amount: {record.Amount}");
             Console.WriteLine($"Record Type: {record.RecordType}");
+        }
+
+        private void ShowSuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }

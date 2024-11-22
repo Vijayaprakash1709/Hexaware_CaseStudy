@@ -13,13 +13,14 @@ namespace Pay_Xpert.UI
             {
                     while (true)
                     {
-                        Console.WriteLine("--------------- Tax Management System ---------------");
-                        Console.WriteLine("1. Calculate Tax for Employee");
-                        Console.WriteLine("2. Get Tax Details by Tax ID");
-                        Console.WriteLine("3. Get Taxes for Employee");
-                        Console.WriteLine("4. Get Taxes for Year");
-                        Console.WriteLine("5. Exit");
-                        Console.Write("Enter your choice: ");
+                        Console.WriteLine("\n\t--------------- Tax Calculation ---------------");
+                        Console.WriteLine("\n\n    1. Calculate Tax for Employee");
+                        Console.WriteLine("    2. Get Tax Details by Tax ID");
+                        Console.WriteLine("    3. Get Taxes for Employee");
+                        Console.WriteLine("    4. Get Taxes for Year");
+                        Console.WriteLine("    5. Exit");
+                        Console.WriteLine("\n-----------------------------------------------------------");
+                        Console.Write("\nEnter your choice: ");
 
                         int choice = int.Parse(Console.ReadLine());
 

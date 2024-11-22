@@ -56,7 +56,7 @@ values
 
 insert into Payroll (EmployeeID, PayPeriodStartDate, PayPeriodEndDate, BasicSalary, OvertimePay, Deductions)
 values
-(1, '2024-11-01', '2024-11-30', 5000.00, 200.00, 50.00),
+(1, '2024-11-01', '2024-11-30', 200000.00, 200.00, 500.00),
 (2, '2024-11-01', '2024-11-30', 6000.00, 150.00, 100.00);
 
 ---------------
@@ -79,14 +79,20 @@ select * from Payroll
 select * from tax
 select * from FinancialRecord
 
-
 select 
     sum(p.NetSalary) as TotalNetSalary,
-    Year as Year,
-    EmployeeID as EmployeeID
+    year(p.PayPeriodStartDate) as Year,
+    p.EmployeeID as EmployeeID
 from 
     Payroll p
 where 
     p.EmployeeID = 1
-    and year(p.PayPeriodStartDate) = 2024;
+    and year(p.PayPeriodStartDate) = 2024
+group by 
+    year(p.PayPeriodStartDate), p.EmployeeID;
+
+select sum(NetSalary) as NetSalary
+from Payroll
+where EmployeeID=1 and year(PayPeriodEndDate)=2024
+group by EmployeeID
 

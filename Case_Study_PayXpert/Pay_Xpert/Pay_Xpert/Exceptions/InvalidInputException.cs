@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Pay_Xpert.Exceptions
 {
    
-        internal class InvalidInputException : Exception
+        public class InvalidInputException : Exception
         {
             public InvalidInputException(string message) : base(message) { }
         }

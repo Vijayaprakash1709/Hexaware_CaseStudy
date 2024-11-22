@@ -1,6 +1,7 @@
 ﻿using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Repository.Interfaces;
+using System;
 using System.Globalization;
 
 namespace Pay_Xpert.Services
@@ -30,7 +31,7 @@ namespace Pay_Xpert.Services
                 var payrolls = _payrollService.GeneratePayroll(employeeId, startDate, endDate);
                 if (payrolls.Count > 0)
                 {
-                    Console.WriteLine("Payroll records retrieved successfully:");
+                    ShowSuccessMessage("Payroll records retrieved successfully:");
                     foreach (var payroll in payrolls)
                     {
                         DisplayPayrollDetails(payroll);
@@ -39,15 +40,13 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No payroll records found for the specified employee and date range.");
+                    ShowErrorMessage("No payroll records found for the specified employee and date range.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage("No payroll records found for the specified employee and date range.");
             }
-            //Console.ReadLine();
-
         }
 
         public void GetPayrollByIdMenu()
@@ -64,14 +63,13 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No payroll found for the given Payroll ID.");
+                    ShowErrorMessage("No payroll found for the given Payroll ID.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage("No payroll found for the given Payroll ID.");
             }
-            //Console.ReadLine();
         }
 
         public void GetPayrollsForEmployeeMenu()
@@ -92,14 +90,13 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No payroll records found for the given Employee ID.");
+                    ShowErrorMessage("No payroll records found for the given Employee ID.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage("No payroll records found for the given Employee ID.");
             }
-            //Console.ReadLine();
         }
 
         public void GetPayrollsForPeriodMenu()
@@ -123,14 +120,13 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.WriteLine("No payroll records found for the given period.");
+                    ShowErrorMessage("No payroll records found for the given period.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ShowErrorMessage($"Error: {ex.Message}");
             }
-            //Console.ReadLine();
         }
 
         private void DisplayPayrollDetails(Payroll payroll)
@@ -143,6 +139,20 @@ namespace Pay_Xpert.Services
             Console.WriteLine($"Overtime Pay: {payroll.OvertimePay}");
             Console.WriteLine($"Deductions: {payroll.Deductions}");
             Console.WriteLine($"Net Salary: {payroll.NetSalary}");
+        }
+
+        private void ShowSuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }

@@ -19,14 +19,14 @@ namespace Pay_Xpert.UI
                 {
                     
                         Console.Clear();
-                        Console.WriteLine("------------------Payroll Management System---------------");
-                        Console.WriteLine("1. Generate Payroll");
-                        Console.WriteLine("2. Get Payroll By ID");
-                        Console.WriteLine("3. Get Payrolls For Employee");
-                        Console.WriteLine("4. Get Payrolls For Period");
-                        Console.WriteLine("5. Exit");
-                        Console.WriteLine("===========================================");
-                        Console.Write("Choose an option (1-5): ");
+                        Console.WriteLine("\n\t------------------Payroll Processing---------------");
+                        Console.WriteLine("\n\n    1. Generate Payroll");
+                        Console.WriteLine("    2. Get Payroll By ID");
+                        Console.WriteLine("    3. Get Payrolls For Employee");
+                        Console.WriteLine("    4. Get Payrolls For Period");
+                        Console.WriteLine("    5. Exit");
+                        Console.WriteLine("\n-----------------------------------------------------------");
+                        Console.Write("\nChoose an option (1-5): ");
                          int choice = int.Parse(Console.ReadLine());
 
                     if (choice < 1 || choice > 5)

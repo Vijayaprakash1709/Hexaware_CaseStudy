@@ -1,8 +1,8 @@
-﻿
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using Pay_Xpert.Models;
 using Pay_Xpert.Services.Interfaces;
 using Pay_Xpert.Utility;
+using Pay_Xpert.Exceptions;
 
 namespace Pay_Xpert.Repository.Implementations
 {
@@ -12,38 +12,49 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                if (employeeId <= 0 || taxYear <= 0)
+                {
+                    throw new InvalidInputException("Invalid input: Employee ID and tax year must be positive.");
+                }
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
 
                     using (var cmd = new SqlCommand(@"
-                SELECT 
-                    SUM(p.NetSalary) AS TotalNetSalary
-                FROM Payroll p
-                WHERE p.EmployeeID = @EmployeeID AND YEAR(p.PayPeriodStartDate) = @TaxYear
-                GROUP BY YEAR(p.PayPeriodStartDate), p.EmployeeID", connection))
+                        SELECT 
+                            SUM(p.NetSalary) AS TotalNetSalary
+                        FROM Payroll p
+                        WHERE p.EmployeeID = @EmployeeID AND YEAR(p.PayPeriodStartDate) = @TaxYear
+                        GROUP BY YEAR(p.PayPeriodStartDate), p.EmployeeID", connection))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
                         cmd.Parameters.AddWithValue("@TaxYear", taxYear);
 
                         object result = cmd.ExecuteScalar();
 
-                        if (result != null && decimal.TryParse(result.ToString(), out decimal totalNetSalary))
+                        if (result != null)
                         {
+                            decimal totalNetSalary = (decimal)result;
                             decimal taxAmount = CalculateTaxUsingNewRegime(totalNetSalary);
                             //InsertTaxRecord(employeeId, taxYear, totalNetSalary, taxAmount, connection);
                             return taxAmount;
                         }
+
                         else
                         {
-                            throw new Exception("No payroll data found for the given employee and year.");
+                            throw new TaxCalculationException($"No payroll data found for Employee ID {employeeId} and tax year {taxYear}.");
                         }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while calculating tax: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                throw new Exception($"Error calculating tax: {ex.Message}");
+                throw new TaxCalculationException($"Unexpected error calculating tax: {ex.Message}");
             }
         }
 
@@ -73,30 +84,43 @@ namespace Pay_Xpert.Repository.Implementations
 
         private void InsertTaxRecord(int employeeId, int taxYear, decimal taxableIncome, decimal taxAmount, SqlConnection connection)
         {
-            using (var cmd = new SqlCommand(@"
-        INSERT INTO Tax (EmployeeID, TaxYear, TaxableIncome, TaxAmount)
-        VALUES (@EmployeeID, @TaxYear, @TaxableIncome, @TaxAmount)", connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
-                cmd.Parameters.AddWithValue("@TaxYear", taxYear);
-                cmd.Parameters.AddWithValue("@TaxableIncome", taxableIncome);
-                cmd.Parameters.AddWithValue("@TaxAmount", taxAmount);
+                using (var cmd = new SqlCommand(@"
+                    INSERT INTO Tax (EmployeeID, TaxYear, TaxableIncome, TaxAmount)
+                    VALUES (@EmployeeID, @TaxYear, @TaxableIncome, @TaxAmount)", connection))
+                {
+                    cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+                    cmd.Parameters.AddWithValue("@TaxYear", taxYear);
+                    cmd.Parameters.AddWithValue("@TaxableIncome", taxableIncome);
+                    cmd.Parameters.AddWithValue("@TaxAmount", taxAmount);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while inserting tax record: {ex.Message}");
             }
         }
+
         public Tax GetTaxById(int taxId)
         {
             try
             {
+                if (taxId <= 0)
+                {
+                    throw new InvalidInputException("Invalid Tax ID provided.");
+                }
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
 
                     using (var cmd = new SqlCommand(@"
-                SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
-                FROM Tax
-                WHERE TaxID = @TaxID", connection))
+                        SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
+                        FROM Tax
+                        WHERE TaxID = @TaxID", connection))
                     {
                         cmd.Parameters.AddWithValue("@TaxID", taxId);
 
@@ -115,15 +139,15 @@ namespace Pay_Xpert.Repository.Implementations
                             }
                             else
                             {
-                                throw new Exception("Tax record not found.");
+                                throw new TaxCalculationException($"No tax record found for Tax ID {taxId}.");
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception($"Error retrieving tax by ID: {ex.Message}");
+                throw new DatabaseConnectionException($"Database error while retrieving tax by ID: {ex.Message}");
             }
         }
 
@@ -131,6 +155,11 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                if (employeeId <= 0)
+                {
+                    throw new InvalidInputException("Invalid Employee ID provided.");
+                }
+
                 var taxes = new List<Tax>();
 
                 using (var connection = DBConnUtil.GetConnection())
@@ -138,14 +167,19 @@ namespace Pay_Xpert.Repository.Implementations
                     connection.Open();
 
                     using (var cmd = new SqlCommand(@"
-                SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
-                FROM Tax
-                WHERE EmployeeID = @EmployeeID", connection))
+                        SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
+                        FROM Tax
+                        WHERE EmployeeID = @EmployeeID", connection))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.HasRows)
+                            {
+                                throw new TaxCalculationException($"No tax records found for Employee ID {employeeId}.");
+                            }
+
                             while (reader.Read())
                             {
                                 taxes.Add(new Tax
@@ -163,9 +197,9 @@ namespace Pay_Xpert.Repository.Implementations
 
                 return taxes;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception($"Error retrieving taxes for employee: {ex.Message}");
+                throw new DatabaseConnectionException($"Database error while retrieving taxes for employee: {ex.Message}");
             }
         }
 
@@ -173,6 +207,11 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                if (taxYear <= 0)
+                {
+                    throw new InvalidInputException("Invalid tax year provided.");
+                }
+
                 var taxes = new List<Tax>();
 
                 using (var connection = DBConnUtil.GetConnection())
@@ -180,14 +219,19 @@ namespace Pay_Xpert.Repository.Implementations
                     connection.Open();
 
                     using (var cmd = new SqlCommand(@"
-                SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
-                FROM Tax
-                WHERE TaxYear = @TaxYear", connection))
+                        SELECT TaxID, EmployeeID, TaxYear, TaxableIncome, TaxAmount
+                        FROM Tax
+                        WHERE TaxYear = @TaxYear", connection))
                     {
                         cmd.Parameters.AddWithValue("@TaxYear", taxYear);
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.HasRows)
+                            {
+                                throw new TaxCalculationException($"No tax records found for the tax year {taxYear}.");
+                            }
+
                             while (reader.Read())
                             {
                                 taxes.Add(new Tax
@@ -205,12 +249,10 @@ namespace Pay_Xpert.Repository.Implementations
 
                 return taxes;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception($"Error retrieving taxes for year: {ex.Message}");
+                throw new DatabaseConnectionException($"Database error while retrieving taxes for the year: {ex.Message}");
             }
         }
-
-
     }
 }

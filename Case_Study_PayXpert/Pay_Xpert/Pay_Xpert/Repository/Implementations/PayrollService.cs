@@ -1,27 +1,33 @@
 ﻿using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Interfaces;
 using Pay_Xpert.Utility;
+using Pay_Xpert.Exceptions;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace Pay_Xpert.Repository.Implementations
 {
-    internal class PayrollService : IPayrollService
+    public class PayrollService : IPayrollService
     {
         public List<Payroll> GeneratePayroll(int employeeId, DateTime startDate, DateTime endDate)
         {
             try
             {
+                if (employeeId <= 0 || startDate > endDate)
+                {
+                    throw new InvalidInputException("Invalid input: Employee ID must be positive, and start date must be earlier than end date.");
+                }
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
                     using (var cmd = new SqlCommand(@"
-                SELECT *
-                FROM Payroll
-                WHERE EmployeeID = @EmployeeID AND 
-                      PayPeriodStartDate >= @StartDate AND 
-                      PayPeriodEndDate <= @EndDate
-                ORDER BY PayPeriodStartDate", connection))
+                        SELECT *
+                        FROM Payroll
+                        WHERE EmployeeID = @EmployeeID AND 
+                              PayPeriodStartDate >= @StartDate AND 
+                              PayPeriodEndDate <= @EndDate
+                        ORDER BY PayPeriodStartDate", connection))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
                         cmd.Parameters.AddWithValue("@StartDate", startDate);
@@ -30,6 +36,11 @@ namespace Pay_Xpert.Repository.Implementations
                         using (var reader = cmd.ExecuteReader())
                         {
                             var payrolls = new List<Payroll>();
+
+                            if (!reader.HasRows)
+                            {
+                                throw new PayrollGenerationException($"No payroll records found for Employee ID {employeeId} within the specified period.");
+                            }
 
                             while (reader.Read())
                             {
@@ -41,9 +52,13 @@ namespace Pay_Xpert.Repository.Implementations
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while generating payroll: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                throw new Exception($"Error fetching payroll records: {ex.Message}");
+                throw new PayrollGenerationException($"Unexpected error generating payroll: {ex.Message}");
             }
         }
 
@@ -51,6 +66,11 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                if (payrollId <= 0)
+                {
+                    throw new InvalidInputException("Invalid payroll ID provided.");
+                }
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
@@ -64,22 +84,34 @@ namespace Pay_Xpert.Repository.Implementations
                             {
                                 return MapPayroll(reader);
                             }
+                            else
+                            {
+                                throw new PayrollGenerationException($"No payroll found with ID {payrollId}.");
+                            }
                         }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while retrieving payroll by ID: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                throw new Exception($"Error retrieving payroll by ID: {ex.Message}");
+                throw new PayrollGenerationException($"Unexpected error retrieving payroll by ID: {ex.Message}");
             }
-            return null;
         }
 
         public List<Payroll> GetPayrollsForEmployee(int employeeId)
         {
-            var payrolls = new List<Payroll>();
             try
             {
+                if (employeeId <= 0)
+                {
+                    throw new InvalidInputException("Invalid Employee ID provided.");
+                }
+
+                var payrolls = new List<Payroll>();
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
@@ -89,6 +121,11 @@ namespace Pay_Xpert.Repository.Implementations
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.HasRows)
+                            {
+                                throw new PayrollGenerationException($"No payroll records found for Employee ID {employeeId}.");
+                            }
+
                             while (reader.Read())
                             {
                                 payrolls.Add(MapPayroll(reader));
@@ -96,19 +133,28 @@ namespace Pay_Xpert.Repository.Implementations
                         }
                     }
                 }
+                return payrolls;
+            }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while retrieving payrolls for employee: {ex.Message}");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error retrieving payrolls for employee: {ex.Message}");
+                throw new PayrollGenerationException($"Unexpected error retrieving payrolls for employee: {ex.Message}");
             }
-            return payrolls;
         }
 
         public List<Payroll> GetPayrollsForPeriod(DateTime startDate, DateTime endDate)
         {
-            var payrolls = new List<Payroll>();
             try
             {
+                if (startDate > endDate)
+                {
+                    throw new InvalidInputException("Start date must be earlier than or equal to end date.");
+                }
+
+                var payrolls = new List<Payroll>();
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
@@ -119,6 +165,11 @@ namespace Pay_Xpert.Repository.Implementations
 
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.HasRows)
+                            {
+                                throw new PayrollGenerationException($"No payroll records found for the period from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}.");
+                            }
+
                             while (reader.Read())
                             {
                                 payrolls.Add(MapPayroll(reader));
@@ -126,12 +177,19 @@ namespace Pay_Xpert.Repository.Implementations
                         }
                     }
                 }
+                return payrolls;
+            }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"Database error while retrieving payrolls for the period: {ex.Message}");
+            }
+            catch(InvalidInputException ex) {
+                throw new InvalidInputException($"Invalid input");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error retrieving payrolls for period: {ex.Message}");
+                throw new PayrollGenerationException($"Unexpected error retrieving payrolls for the period: {ex.Message}");
             }
-            return payrolls;
         }
 
         private Payroll MapPayroll(SqlDataReader reader)
@@ -152,7 +210,7 @@ namespace Pay_Xpert.Repository.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error mapping payroll data: {ex.Message}");
+                throw new PayrollGenerationException($"Error mapping payroll data: {ex.Message}");
             }
         }
     }

@@ -1,8 +1,7 @@
 ﻿using Pay_Xpert.Models;
 using Pay_Xpert.Services.Interfaces;
 using Pay_Xpert.Utility;
-using System;
-using System.Collections.Generic;
+using Pay_Xpert.Exceptions;
 using System.Data.SqlClient;
 
 namespace Pay_Xpert.Repository.Implementations
@@ -26,15 +25,22 @@ namespace Pay_Xpert.Repository.Implementations
                             {
                                 return MapEmployee(reader);
                             }
+                            else
+                            {
+                                throw new EmployeeNotFoundException($"Employee with ID {employeeId} not found.");
+                            }
                         }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"An error occurred while connecting to the database: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving employee by ID: {ex.Message}");
+                throw new EmployeeNotFoundException($"An unexpected error occurred while retrieving the employee: {ex.Message}");
             }
-            return null;
         }
 
         public List<Employee> GetAllEmployees()
@@ -58,10 +64,15 @@ namespace Pay_Xpert.Repository.Implementations
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"An error occurred while connecting to the database: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving all employees: {ex.Message}");
+                throw new FinancialRecordException($"An unexpected error occurred while retrieving all employees: {ex.Message}");
             }
+
             return employees;
         }
 
@@ -69,6 +80,8 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                ValidateEmployeeData(employeeData);
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
@@ -84,9 +97,17 @@ namespace Pay_Xpert.Repository.Implementations
                     }
                 }
             }
+            catch (InvalidInputException ex)
+            {
+                throw ex;
+            }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"An error occurred while connecting to the database: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding employee: {ex.Message}");
+                throw new FinancialRecordException($"An unexpected error occurred while adding the employee: {ex.Message}");
             }
         }
 
@@ -94,6 +115,8 @@ namespace Pay_Xpert.Repository.Implementations
         {
             try
             {
+                ValidateEmployeeData(employeeData);
+
                 using (var connection = DBConnUtil.GetConnection())
                 {
                     connection.Open();
@@ -116,13 +139,26 @@ namespace Pay_Xpert.Repository.Implementations
                     {
                         AddEmployeeParameters(command, employeeData);
                         command.Parameters.AddWithValue("@EmployeeId", employeeData.EmployeeID);
-                        command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            throw new EmployeeNotFoundException($"Employee with ID {employeeData.EmployeeID} not found.");
+                        }
                     }
                 }
             }
+            catch (InvalidInputException ex)
+            {
+                throw ex;
+            }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"An error occurred while connecting to the database: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error updating employee: {ex.Message}");
+                throw new FinancialRecordException($"An unexpected error occurred while updating the employee: {ex.Message}");
             }
         }
 
@@ -137,13 +173,22 @@ namespace Pay_Xpert.Repository.Implementations
                     using (var command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@EmployeeId", employeeId);
-                        command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            throw new EmployeeNotFoundException($"Employee with ID {employeeId} not found.");
+                        }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new DatabaseConnectionException($"An error occurred while connecting to the database: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error removing employee: {ex.Message}");
+                throw new FinancialRecordException($"An unexpected error occurred while removing the employee: {ex.Message}");
             }
         }
 
@@ -168,8 +213,7 @@ namespace Pay_Xpert.Repository.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error mapping employee data: {ex.Message}");
-                throw;
+                throw new FinancialRecordException($"An error occurred while mapping employee data: {ex.Message}");
             }
         }
 
@@ -190,8 +234,25 @@ namespace Pay_Xpert.Repository.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding parameters to SQL command: {ex.Message}");
-                throw;
+                throw new FinancialRecordException($"An error occurred while adding parameters to the SQL command: {ex.Message}");
+            }
+        }
+
+        private void ValidateEmployeeData(Employee employeeData)
+        {
+            if (string.IsNullOrWhiteSpace(employeeData.FirstName) || string.IsNullOrWhiteSpace(employeeData.LastName))
+            {
+                throw new InvalidInputException("First name and last name are required.");
+            }
+
+            if (employeeData.DateOfBirth > DateTime.Now)
+            {
+                throw new InvalidInputException("Date of birth cannot be in the future.");
+            }
+
+            if (string.IsNullOrWhiteSpace(employeeData.Email) || !employeeData.Email.Contains("@"))
+            {
+                throw new InvalidInputException("A valid email address is required.");
             }
         }
     }

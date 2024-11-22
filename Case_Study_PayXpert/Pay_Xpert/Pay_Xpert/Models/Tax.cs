@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pay_Xpert.Models
 {
-    internal class Tax
+    public class Tax
     {
         private int taxID;
         private int employeeID;
