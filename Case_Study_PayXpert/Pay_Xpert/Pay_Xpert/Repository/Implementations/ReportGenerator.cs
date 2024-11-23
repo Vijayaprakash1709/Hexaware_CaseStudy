@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Pay_Xpert.Exceptions;
 using Pay_Xpert.Models;
 using Pay_Xpert.Utility;
 
@@ -30,9 +31,12 @@ namespace Pay_Xpert.Services
                     using (var reader = command.ExecuteReader())
                     {
                         var employeeReport = new EmployeeReport();
+                        bool dataFound = false; // Flag to track if any record exists
 
                         while (reader.Read())
                         {
+                            dataFound = true;
+
                             if (employeeReport.EmployeeID == 0)
                             {
                                 employeeReport.EmployeeID = reader.GetInt32(0);
@@ -62,12 +66,15 @@ namespace Pay_Xpert.Services
                             }
                         }
 
+                        if (!dataFound)
+                        {
+                            throw new EmployeeNotFoundException($"No employee found with ID {employeeId}");
+                        }
+
                         return employeeReport;
                     }
                 }
             }
-
-            return null;
         }
     }
 }

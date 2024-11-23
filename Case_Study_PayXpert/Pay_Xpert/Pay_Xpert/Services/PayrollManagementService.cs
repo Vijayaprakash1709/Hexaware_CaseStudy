@@ -1,4 +1,5 @@
-﻿using Pay_Xpert.Models;
+﻿using Pay_Xpert.Exceptions;
+using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Repository.Interfaces;
 using System;
@@ -43,9 +44,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No payroll records found for the specified employee and date range.");
                 }
             }
+            catch (PayrollGenerationException pge)
+            {
+                ShowErrorMessage($"Payroll Generation Error: {pge.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage("No payroll records found for the specified employee and date range.");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -66,9 +71,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No payroll found for the given Payroll ID.");
                 }
             }
+            catch (PayrollGenerationException pge)
+            {
+                ShowErrorMessage($"Payroll Generation Error: {pge.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage("No payroll found for the given Payroll ID.");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -93,9 +102,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No payroll records found for the given Employee ID.");
                 }
             }
+            catch (PayrollGenerationException pge)
+            {
+                ShowErrorMessage($"Payroll Generation Error: {pge.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage("No payroll records found for the given Employee ID.");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -123,9 +136,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No payroll records found for the given period.");
                 }
             }
+            catch (PayrollGenerationException pge)
+            {
+                ShowErrorMessage($"Payroll Generation Error: {pge.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Error: {ex.Message}");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 

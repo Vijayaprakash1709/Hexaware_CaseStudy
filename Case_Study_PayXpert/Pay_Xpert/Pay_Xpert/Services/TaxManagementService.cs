@@ -1,7 +1,9 @@
-﻿using Pay_Xpert.Models;
+﻿using Pay_Xpert.Exceptions;
+using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Repository.Interfaces;
 using Pay_Xpert.Services.Interfaces;
+using System;
 using System.Globalization;
 
 namespace Pay_Xpert.Services
@@ -30,10 +32,16 @@ namespace Pay_Xpert.Services
                 Console.WriteLine($"Calculated Tax for Employee {employeeId} in Year {taxYear}: {taxAmount}");
                 Console.ResetColor();
             }
+            catch (TaxCalculationException tce)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Tax Calculation Error: {tce.Message}");
+                Console.ResetColor();
+            }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error calculating tax: {ex.Message}");
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
                 Console.ResetColor();
             }
         }
@@ -57,10 +65,16 @@ namespace Pay_Xpert.Services
                     Console.ResetColor();
                 }
             }
+            catch (TaxCalculationException tce)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
+                Console.ResetColor();
+            }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error retrieving tax details: {ex.Message}");
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
                 Console.ResetColor();
             }
         }
@@ -91,10 +105,16 @@ namespace Pay_Xpert.Services
                     Console.ResetColor();
                 }
             }
+            catch (TaxCalculationException tce)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
+                Console.ResetColor();
+            }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error retrieving taxes for employee: {ex.Message}");
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
                 Console.ResetColor();
             }
         }
@@ -125,10 +145,16 @@ namespace Pay_Xpert.Services
                     Console.ResetColor();
                 }
             }
+            catch (TaxCalculationException tce)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
+                Console.ResetColor();
+            }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error retrieving taxes for year: {ex.Message}");
+                Console.WriteLine($"Unexpected Error: {ex.Message}");
                 Console.ResetColor();
             }
         }

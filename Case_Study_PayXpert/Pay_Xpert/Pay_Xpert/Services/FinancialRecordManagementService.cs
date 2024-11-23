@@ -1,4 +1,5 @@
-﻿using Pay_Xpert.Models;
+﻿using Pay_Xpert.Exceptions;
+using Pay_Xpert.Models;
 using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Services.Interfaces;
 using System;
@@ -34,9 +35,13 @@ namespace Pay_Xpert.Services
                 _financialRecordService.AddFinancialRecord(employeeId, description, amount, recordType);
                 ShowSuccessMessage("Financial record added successfully.");
             }
+            catch (FinancialRecordException fre)
+            {
+                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Error: {ex.Message}");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -57,9 +62,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No financial record found for the given Record ID.");
                 }
             }
+            catch (FinancialRecordException fre)
+            {
+                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage("No financial record found for the given Record ID");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -84,9 +93,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No financial records found for the given Employee ID.");
                 }
             }
+            catch (FinancialRecordException fre)
+            {
+                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage("No financial records found for the given Employee ID.");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -111,9 +124,13 @@ namespace Pay_Xpert.Services
                     ShowErrorMessage("No financial records found for the given date.");
                 }
             }
+            catch (FinancialRecordException fre)
+            {
+                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+            }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Error: {ex.Message}");
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 

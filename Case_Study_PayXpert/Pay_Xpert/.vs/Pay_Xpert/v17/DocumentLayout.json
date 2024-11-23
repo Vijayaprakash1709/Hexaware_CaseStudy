@@ -3,60 +3,24 @@
   "WorkspaceRootPath": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\taxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\taxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\payrollservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\payrollservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\financialrecordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\financialrecordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\services\\payrollmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\services\\payrollmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\services\\financialrecordmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\services\\financialrecordmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\services\\employeemanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\services\\employeemanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\services\\reportmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\services\\reportmanagementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\reportgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\reportgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\implementations\\reportgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\implementations\\reportgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D47F3E10-5AA6-479A-91A8-56EFDB6D1960}|Pay_Xpert.Tests\\Pay_Xpert.Tests.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert.tests\\payxperttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D47F3E10-5AA6-479A-91A8-56EFDB6D1960}|Pay_Xpert.Tests\\Pay_Xpert.Tests.csproj|solutionrelative:pay_xpert.tests\\payxperttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\models\\payroll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\models\\payroll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\utility\\dbconnutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\utility\\dbconnutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\repository\\interfaces\\ifinancialrecordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\repository\\interfaces\\ifinancialrecordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|d:\\vijay external projects\\hexaware training\\case study\\case_study_payxpert\\pay_xpert\\pay_xpert\\ui\\taxui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AC8DF72-26E1-4335-83D6-8EA94A1C0396}|Pay_Xpert\\Pay_Xpert.csproj|solutionrelative:pay_xpert\\ui\\taxui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,187 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FinancialRecordManagementService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\FinancialRecordManagementService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Services\\FinancialRecordManagementService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\FinancialRecordManagementService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Services\\FinancialRecordManagementService.cs",
-              "ViewState": "AgIAAHcAAAAAAAAAAAA9wFgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T12:52:23.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmployeeService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\EmployeeService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Implementations\\EmployeeService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\EmployeeService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Repository\\Implementations\\EmployeeService.cs",
-              "ViewState": "AgIAAO4AAAAAAAAAAAAuwPwAAABjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T12:45:38.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ReportManagementService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\ReportManagementService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Services\\ReportManagementService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\ReportManagementService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Services\\ReportManagementService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwGIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:42:21.984Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Payroll.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Models\\Payroll.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Models\\Payroll.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Models\\Payroll.cs",
-              "RelativeToolTip": "Pay_Xpert\\Models\\Payroll.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:38:30.735Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PayrollService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\PayrollService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Implementations\\PayrollService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\PayrollService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Repository\\Implementations\\PayrollService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:36:15.735Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "ReportGenerator.cs",
               "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\ReportGenerator.cs",
               "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Implementations\\ReportGenerator.cs",
               "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\ReportGenerator.cs",
               "RelativeToolTip": "Pay_Xpert\\Repository\\Implementations\\ReportGenerator.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAQwEkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:34:03.07Z",
+              "WhenOpened": "2024-11-23T06:53:26.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DBConnUtil.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Utility\\DBConnUtil.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Utility\\DBConnUtil.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Utility\\DBConnUtil.cs",
-              "RelativeToolTip": "Pay_Xpert\\Utility\\DBConnUtil.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBoAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Pay_Xpert\\Models\\Employee.cs",
+              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Models\\Employee.cs",
+              "RelativeToolTip": "Pay_Xpert\\Models\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:03:33.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Dashboard.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Dashboard.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Dashboard.cs",
-              "RelativeToolTip": "Pay_Xpert\\Dashboard.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAQwDIAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:00:33.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TaxService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\TaxService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Implementations\\TaxService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\TaxService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Repository\\Implementations\\TaxService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T09:18:49.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EmployeeManagementService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\EmployeeManagementService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Services\\EmployeeManagementService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\EmployeeManagementService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Services\\EmployeeManagementService.cs",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAowMUAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T13:48:13.377Z",
+              "WhenOpened": "2024-11-23T06:49:07.505Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FinancialRecordService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\FinancialRecordService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Implementations\\FinancialRecordService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Implementations\\FinancialRecordService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Repository\\Implementations\\FinancialRecordService.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAkwF0AAAAzAAAAAAAAAA==",
+              "Title": "PayXpertTests.cs",
+              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert.Tests\\PayXpertTests.cs",
+              "RelativeDocumentMoniker": "Pay_Xpert.Tests\\PayXpertTests.cs",
+              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert.Tests\\PayXpertTests.cs",
+              "RelativeToolTip": "Pay_Xpert.Tests\\PayXpertTests.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T09:34:47.292Z",
+              "WhenOpened": "2024-11-23T06:06:38.752Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
+              "Title": "TaxUI.cs",
+              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\UI\\TaxUI.cs",
+              "RelativeDocumentMoniker": "Pay_Xpert\\UI\\TaxUI.cs",
+              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\UI\\TaxUI.cs",
+              "RelativeToolTip": "Pay_Xpert\\UI\\TaxUI.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T05:04:03.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Program.cs",
               "RelativeDocumentMoniker": "Pay_Xpert\\Program.cs",
               "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Program.cs",
               "RelativeToolTip": "Pay_Xpert\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-16T01:08:17.917Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "IFinancialRecordService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Interfaces\\IFinancialRecordService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Repository\\Interfaces\\IFinancialRecordService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Repository\\Interfaces\\IFinancialRecordService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Repository\\Interfaces\\IFinancialRecordService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T09:34:58.453Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PayrollManagementService.cs",
-              "DocumentMoniker": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\PayrollManagementService.cs",
-              "RelativeDocumentMoniker": "Pay_Xpert\\Services\\PayrollManagementService.cs",
-              "ToolTip": "D:\\Vijay External Projects\\Hexaware Training\\Case Study\\Case_Study_PayXpert\\Pay_Xpert\\Pay_Xpert\\Services\\PayrollManagementService.cs",
-              "RelativeToolTip": "Pay_Xpert\\Services\\PayrollManagementService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwGEAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T04:40:58.697Z",
+              "WhenOpened": "2024-11-23T04:47:16.677Z",
               "EditorCaption": ""
             }
           ]

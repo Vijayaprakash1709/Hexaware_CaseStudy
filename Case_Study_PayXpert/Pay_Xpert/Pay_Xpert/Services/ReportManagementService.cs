@@ -1,4 +1,5 @@
-﻿using Pay_Xpert.Models;
+﻿using Pay_Xpert.Exceptions;
+using Pay_Xpert.Models;
 using System;
 
 namespace Pay_Xpert.Services
@@ -22,16 +23,27 @@ namespace Pay_Xpert.Services
                 return;
             }
 
-            var employeeReport = reportGenerator.GenerateEmployeeReport(employeeId);
-
-            if (employeeReport == null)
+            try
             {
-                ShowErrorMessage("No report found for this employee.");
-                return;
-            }
+                var employeeReport = reportGenerator.GenerateEmployeeReport(employeeId);
 
-            ShowSuccessMessage("Report generated successfully!");
-            DisplayEmployeeReport(employeeReport);
+                if (employeeReport == null)
+                {
+                    ShowErrorMessage("No report found for this employee.");
+                    return;
+                }
+
+                ShowSuccessMessage("Report generated successfully!");
+                DisplayEmployeeReport(employeeReport);
+            }
+            catch (EmployeeNotFoundException ex)
+            {
+                ShowErrorMessage($"Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"An unexpected error occurred: {ex.Message}");
+            }
         }
 
         private static void DisplayEmployeeReport(EmployeeReport report)
