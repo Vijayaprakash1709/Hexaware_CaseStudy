@@ -4,6 +4,7 @@ using Pay_Xpert.Repository.Implementations;
 using Pay_Xpert.Repository.Interfaces;
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Pay_Xpert.Services
 {
@@ -27,14 +28,9 @@ namespace Pay_Xpert.Services
                 Console.WriteLine("========================================");
                 Console.ResetColor();
 
-                Console.Write("\nEnter Employee ID: ");
-                int employeeId = int.Parse(Console.ReadLine());
-
-                Console.Write("Enter Pay Period Start Date (yyyy-MM-dd): ");
-                DateTime startDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                Console.Write("Enter Pay Period End Date (yyyy-MM-dd): ");
-                DateTime endDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                int employeeId = int.Parse(GetValidatedInput("\nEnter Employee ID: ", @"^\d+$", "Invalid Employee ID. It must be a positive integer."));
+                DateTime startDate = DateTime.ParseExact(GetValidatedInput("Enter Pay Period Start Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDate = DateTime.ParseExact(GetValidatedInput("Enter Pay Period End Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 var payrolls = _payrollService.GeneratePayroll(employeeId, startDate, endDate);
                 if (payrolls.Count > 0)
@@ -72,8 +68,7 @@ namespace Pay_Xpert.Services
                 Console.WriteLine("========================================");
                 Console.ResetColor();
 
-                Console.Write("\nEnter Payroll ID: ");
-                int payrollId = int.Parse(Console.ReadLine());
+                int payrollId = int.Parse(GetValidatedInput("\nEnter Payroll ID: ", @"^\d+$", "Invalid Payroll ID. It must be a positive integer."));
 
                 var payroll = _payrollService.GetPayrollById(payrollId);
                 if (payroll != null)
@@ -106,8 +101,7 @@ namespace Pay_Xpert.Services
                 Console.WriteLine("========================================");
                 Console.ResetColor();
 
-                Console.Write("\nEnter Employee ID: ");
-                int employeeId = int.Parse(Console.ReadLine());
+                int employeeId = int.Parse(GetValidatedInput("\nEnter Employee ID: ", @"^\d+$", "Invalid Employee ID. It must be a positive integer."));
 
                 var payrolls = _payrollService.GetPayrollsForEmployee(employeeId);
                 if (payrolls.Count > 0)
@@ -144,11 +138,8 @@ namespace Pay_Xpert.Services
                 Console.WriteLine("========================================");
                 Console.ResetColor();
 
-                Console.Write("\nEnter Pay Period Start Date (yyyy-MM-dd): ");
-                DateTime startDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                Console.Write("Enter Pay Period End Date (yyyy-MM-dd): ");
-                DateTime endDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDate = DateTime.ParseExact(GetValidatedInput("\nEnter Pay Period Start Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDate = DateTime.ParseExact(GetValidatedInput("Enter Pay Period End Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 var payrolls = _payrollService.GetPayrollsForPeriod(startDate, endDate);
                 if (payrolls.Count > 0)
@@ -173,6 +164,7 @@ namespace Pay_Xpert.Services
                 ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
+
         public void AddPayrollMenu()
         {
             try
@@ -184,23 +176,12 @@ namespace Pay_Xpert.Services
                 Console.WriteLine("========================================");
                 Console.ResetColor();
 
-                Console.Write("\nEnter Employee ID: ");
-                int employeeId = int.Parse(Console.ReadLine());
-
-                Console.Write("Enter Pay Period Start Date (yyyy-MM-dd): ");
-                DateTime startDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                Console.Write("Enter Pay Period End Date (yyyy-MM-dd): ");
-                DateTime endDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                Console.Write("Enter Basic Salary: ");
-                decimal basicSalary = decimal.Parse(Console.ReadLine());
-
-                Console.Write("Enter Overtime Pay: ");
-                decimal overtimePay = decimal.Parse(Console.ReadLine());
-
-                Console.Write("Enter Deductions: ");
-                decimal deductions = decimal.Parse(Console.ReadLine());
+                int employeeId = int.Parse(GetValidatedInput("\nEnter Employee ID: ", @"^\d+$", "Invalid Employee ID. It must be a positive integer."));
+                DateTime startDate = DateTime.ParseExact(GetValidatedInput("Enter Pay Period Start Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDate = DateTime.ParseExact(GetValidatedInput("Enter Pay Period End Date (yyyy-MM-dd): ", @"^\d{4}-\d{2}-\d{2}$", "Invalid date format. Use yyyy-MM-dd."), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                decimal basicSalary = decimal.Parse(GetValidatedInput("Enter Basic Salary: ", @"^\d+(\.\d{1,2})?$", "Invalid amount. Use a positive number with up to two decimal places."));
+                decimal overtimePay = decimal.Parse(GetValidatedInput("Enter Overtime Pay: ", @"^\d+(\.\d{1,2})?$", "Invalid amount. Use a positive number with up to two decimal places."));
+                decimal deductions = decimal.Parse(GetValidatedInput("Enter Deductions: ", @"^\d+(\.\d{1,2})?$", "Invalid amount. Use a positive number with up to two decimal places."));
 
                 var payroll = new Payroll
                 {
@@ -234,6 +215,21 @@ namespace Pay_Xpert.Services
             }
         }
 
+        private string GetValidatedInput(string prompt, string pattern, string errorMessage)
+        {
+            string input;
+            while (true)
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+                if (Regex.IsMatch(input, pattern))
+                {
+                    break;
+                }
+                ShowErrorMessage(errorMessage);
+            }
+            return input;
+        }
 
         private void DisplayPayrollDetails(Payroll payroll)
         {
