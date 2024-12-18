@@ -1,6 +1,5 @@
 ﻿using Pay_Xpert.Models;
 
-
 namespace Pay_Xpert.Repository.Interfaces
 {
     public interface IPayrollService
@@ -9,5 +8,6 @@ namespace Pay_Xpert.Repository.Interfaces
         Payroll GetPayrollById(int payrollId);
         List<Payroll> GetPayrollsForEmployee(int employeeId);
         List<Payroll> GetPayrollsForPeriod(DateTime startDate, DateTime endDate);
+        Payroll AddPayroll(Payroll payroll);
     }
 }

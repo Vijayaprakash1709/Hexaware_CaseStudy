@@ -20,6 +20,12 @@ namespace Pay_Xpert.Services
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("========================================");
+                Console.WriteLine("          ADD FINANCIAL RECORD          ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
                 Console.Write("Enter Employee ID: ");
                 int employeeId = int.Parse(Console.ReadLine());
 
@@ -33,15 +39,15 @@ namespace Pay_Xpert.Services
                 string recordType = Console.ReadLine();
 
                 _financialRecordService.AddFinancialRecord(employeeId, description, amount, recordType);
-                ShowSuccessMessage("Financial record added successfully.");
+                ShowSuccessMessage("\nFinancial record added successfully.");
             }
             catch (FinancialRecordException fre)
             {
-                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+                ShowErrorMessage($"\nFinancial Record Error: {fre.Message}");
             }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Unexpected Error: {ex.Message}");
+                ShowErrorMessage($"\nUnexpected Error: {ex.Message}");
             }
         }
 
@@ -49,6 +55,12 @@ namespace Pay_Xpert.Services
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("========================================");
+                Console.WriteLine("        GET FINANCIAL RECORD BY ID      ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
                 Console.Write("Enter Record ID: ");
                 int recordId = int.Parse(Console.ReadLine());
 
@@ -59,16 +71,16 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    ShowErrorMessage("No financial record found for the given Record ID.");
+                    ShowErrorMessage("\nNo financial record found for the given Record ID.");
                 }
             }
             catch (FinancialRecordException fre)
             {
-                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+                ShowErrorMessage($"\nFinancial Record Error: {fre.Message}");
             }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Unexpected Error: {ex.Message}");
+                ShowErrorMessage($"\nUnexpected Error: {ex.Message}");
             }
         }
 
@@ -76,6 +88,12 @@ namespace Pay_Xpert.Services
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("========================================");
+                Console.WriteLine("     GET FINANCIAL RECORDS BY EMPLOYEE  ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
                 Console.Write("Enter Employee ID: ");
                 int employeeId = int.Parse(Console.ReadLine());
 
@@ -85,21 +103,23 @@ namespace Pay_Xpert.Services
                     foreach (var record in records)
                     {
                         DisplayFinancialRecord(record);
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("-------------------------------------------");
+                        Console.ResetColor();
                     }
                 }
                 else
                 {
-                    ShowErrorMessage("No financial records found for the given Employee ID.");
+                    ShowErrorMessage("\nNo financial records found for the given Employee ID.");
                 }
             }
             catch (FinancialRecordException fre)
             {
-                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+                ShowErrorMessage($"\nFinancial Record Error: {fre.Message}");
             }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Unexpected Error: {ex.Message}");
+                ShowErrorMessage($"\nUnexpected Error: {ex.Message}");
             }
         }
 
@@ -107,6 +127,12 @@ namespace Pay_Xpert.Services
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("========================================");
+                Console.WriteLine("        GET FINANCIAL RECORDS BY DATE    ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
                 Console.Write("Enter Date (yyyy-MM-dd): ");
                 DateTime recordDate = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
@@ -116,32 +142,36 @@ namespace Pay_Xpert.Services
                     foreach (var record in records)
                     {
                         DisplayFinancialRecord(record);
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("-------------------------------------------");
+                        Console.ResetColor();
                     }
                 }
                 else
                 {
-                    ShowErrorMessage("No financial records found for the given date.");
+                    ShowErrorMessage("\nNo financial records found for the given date.");
                 }
             }
             catch (FinancialRecordException fre)
             {
-                ShowErrorMessage($"Financial Record Error: {fre.Message}");
+                ShowErrorMessage($"\nFinancial Record Error: {fre.Message}");
             }
             catch (Exception ex)
             {
-                ShowErrorMessage($"Unexpected Error: {ex.Message}");
+                ShowErrorMessage($"\nUnexpected Error: {ex.Message}");
             }
         }
 
         private void DisplayFinancialRecord(FinancialRecord record)
         {
-            Console.WriteLine($"Record ID: {record.RecordID}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"\nRecord ID: {record.RecordID}");
             Console.WriteLine($"Employee ID: {record.EmployeeID}");
             Console.WriteLine($"Record Date: {record.RecordDate:yyyy-MM-dd}");
             Console.WriteLine($"Description: {record.Description}");
-            Console.WriteLine($"Amount: {record.Amount}");
+            Console.WriteLine($"Amount: {record.Amount:C2}");
             Console.WriteLine($"Record Type: {record.RecordType}");
+            Console.ResetColor();
         }
 
         private void ShowSuccessMessage(string message)

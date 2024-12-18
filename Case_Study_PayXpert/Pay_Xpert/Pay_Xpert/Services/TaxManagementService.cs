@@ -21,7 +21,14 @@ namespace Pay_Xpert.Services
         {
             try
             {
-                Console.Write("Enter Employee ID: ");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("========================================");
+                Console.WriteLine("        CALCULATE TAX FOR EMPLOYEE       ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
+                Console.Write("\nEnter Employee ID: ");
                 int employeeId = int.Parse(Console.ReadLine());
                 Console.Write("Enter Tax Year: ");
                 int taxYear = int.Parse(Console.ReadLine());
@@ -29,20 +36,16 @@ namespace Pay_Xpert.Services
                 decimal taxAmount = _taxService.CalculateTax(employeeId, taxYear);
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Calculated Tax for Employee {employeeId} in Year {taxYear}: {taxAmount}");
+                Console.WriteLine($"\nCalculated Tax for Employee {employeeId} in Year {taxYear}: {taxAmount:C2}");
                 Console.ResetColor();
             }
             catch (TaxCalculationException tce)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Tax Calculation Error: {tce.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Tax Calculation Error: {tce.Message}");
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Unexpected Error: {ex.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -50,7 +53,14 @@ namespace Pay_Xpert.Services
         {
             try
             {
-                Console.Write("Enter Tax ID: ");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("========================================");
+                Console.WriteLine("           VIEW TAX DETAILS BY ID        ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
+                Console.Write("\nEnter Tax ID: ");
                 int taxId = int.Parse(Console.ReadLine());
 
                 var tax = _taxService.GetTaxById(taxId);
@@ -60,22 +70,16 @@ namespace Pay_Xpert.Services
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("No tax record found for the given Tax ID.");
-                    Console.ResetColor();
+                    ShowErrorMessage("No tax record found for the given Tax ID.");
                 }
             }
             catch (TaxCalculationException tce)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Tax Retrieval Error: {tce.Message}");
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Unexpected Error: {ex.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -83,7 +87,14 @@ namespace Pay_Xpert.Services
         {
             try
             {
-                Console.Write("Enter Employee ID: ");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("========================================");
+                Console.WriteLine("       VIEW TAXES FOR AN EMPLOYEE        ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
+                Console.Write("\nEnter Employee ID: ");
                 int employeeId = int.Parse(Console.ReadLine());
 
                 var taxes = _taxService.GetTaxesForEmployee(employeeId);
@@ -94,28 +105,20 @@ namespace Pay_Xpert.Services
                         DisplayTaxDetails(tax);
                         Console.WriteLine("========================================");
                     }
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Taxes retrieved successfully.");
-                    Console.ResetColor();
+                    ShowSuccessMessage("Taxes retrieved successfully.");
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("No tax records found for the given Employee ID.");
-                    Console.ResetColor();
+                    ShowErrorMessage("No tax records found for the given Employee ID.");
                 }
             }
             catch (TaxCalculationException tce)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Tax Retrieval Error: {tce.Message}");
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Unexpected Error: {ex.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
@@ -123,7 +126,14 @@ namespace Pay_Xpert.Services
         {
             try
             {
-                Console.Write("Enter Tax Year: ");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("========================================");
+                Console.WriteLine("           VIEW TAXES FOR A YEAR         ");
+                Console.WriteLine("========================================");
+                Console.ResetColor();
+
+                Console.Write("\nEnter Tax Year: ");
                 int taxYear = int.Parse(Console.ReadLine());
 
                 var taxes = _taxService.GetTaxesForYear(taxYear);
@@ -134,38 +144,55 @@ namespace Pay_Xpert.Services
                         DisplayTaxDetails(tax);
                         Console.WriteLine("========================================");
                     }
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Taxes retrieved successfully.");
-                    Console.ResetColor();
+                    ShowSuccessMessage("Taxes retrieved successfully.");
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("No tax records found for the given year.");
-                    Console.ResetColor();
+                    ShowErrorMessage("No tax records found for the given year.");
                 }
             }
             catch (TaxCalculationException tce)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Tax Retrieval Error: {tce.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Tax Retrieval Error: {tce.Message}");
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Unexpected Error: {ex.Message}");
-                Console.ResetColor();
+                ShowErrorMessage($"Unexpected Error: {ex.Message}");
             }
         }
 
         private void DisplayTaxDetails(Tax tax)
         {
-            Console.WriteLine($"Tax ID: {tax.TaxID}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"\nTax ID: {tax.TaxID}");
             Console.WriteLine($"Employee ID: {tax.EmployeeID}");
             Console.WriteLine($"Tax Year: {tax.TaxYear}");
-            Console.WriteLine($"Taxable Income: {tax.TaxableIncome}");
-            Console.WriteLine($"Tax Amount: {tax.TaxAmount}");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("----------------------------------------");
+            Console.ResetColor();
+
+            Console.WriteLine($"Taxable Income: {tax.TaxableIncome:C2}");
+            Console.WriteLine($"Tax Amount: {tax.TaxAmount:C2}");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("----------------------------------------");
+            Console.ResetColor();
+        }
+
+        private void ShowSuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }

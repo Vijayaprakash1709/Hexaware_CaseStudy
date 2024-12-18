@@ -11,11 +11,13 @@ namespace Pay_Xpert.Services
             ReportGenerator reportGenerator = new ReportGenerator();
 
             Console.Clear();
-            Console.WriteLine("****************************************");
-            Console.WriteLine("***** Employee Report Generator *****");
-            Console.WriteLine("****************************************");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("========================================");
+            Console.WriteLine("           EMPLOYEE REPORT GENERATOR    ");
+            Console.WriteLine("========================================");
+            Console.ResetColor();
 
-            Console.Write("Enter Employee ID: ");
+            Console.Write("\nEnter Employee ID: ");
             int employeeId;
             if (!int.TryParse(Console.ReadLine(), out employeeId))
             {
@@ -33,7 +35,7 @@ namespace Pay_Xpert.Services
                     return;
                 }
 
-                ShowSuccessMessage("Report generated successfully!");
+                ShowSuccessMessage("\nReport generated successfully!");
                 DisplayEmployeeReport(employeeReport);
             }
             catch (EmployeeNotFoundException ex)
@@ -49,15 +51,22 @@ namespace Pay_Xpert.Services
         private static void DisplayEmployeeReport(EmployeeReport report)
         {
             Console.Clear();
-            Console.WriteLine("****************************************");
-            Console.WriteLine("***** Employee Report *****");
-            Console.WriteLine("****************************************");
-            Console.WriteLine($"Employee ID: {report.EmployeeID}");
-            Console.WriteLine($"Employee Name: {report.EmployeeName}");
-            Console.WriteLine("****************************************");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("========================================");
+            Console.WriteLine("             EMPLOYEE REPORT            ");
+            Console.WriteLine("========================================");
+            Console.ResetColor();
 
-            Console.WriteLine("***** Payroll Information *****");
-            Console.WriteLine("****************************************");
+            Console.WriteLine($"\nEmployee ID: {report.EmployeeID}");
+            Console.WriteLine($"Employee Name: {report.EmployeeName}");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("----------------------------------------");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n           PAYROLL INFORMATION           ");
+            Console.WriteLine("----------------------------------------");
+            Console.ResetColor();
             if (report.Payrolls.Count == 0)
             {
                 Console.WriteLine("No payroll data available.");
@@ -66,15 +75,19 @@ namespace Pay_Xpert.Services
             {
                 foreach (var payroll in report.Payrolls)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Pay Period: {payroll.PayPeriodStartDate:yyyy-MM-dd} - {payroll.PayPeriodEndDate:yyyy-MM-dd}");
                     Console.WriteLine($"Net Salary: {payroll.NetSalary:C2}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("----------------------------------------");
+                    Console.ResetColor();
                 }
             }
-            Console.WriteLine("****************************************");
 
-            Console.WriteLine("***** Tax Information *****");
-            Console.WriteLine("****************************************");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n           TAX INFORMATION               ");
+            Console.WriteLine("----------------------------------------");
+            Console.ResetColor();
             if (report.Taxes.Count == 0)
             {
                 Console.WriteLine("No tax data available.");
@@ -83,14 +96,19 @@ namespace Pay_Xpert.Services
             {
                 foreach (var tax in report.Taxes)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Tax Year: {tax.TaxYear}");
                     Console.WriteLine($"Taxable Income: {tax.TaxableIncome:C2}");
                     Console.WriteLine($"Tax Amount: {tax.TaxAmount:C2}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("----------------------------------------");
+                    Console.ResetColor();
                 }
             }
 
-            Console.WriteLine("****************************************");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("========================================");
+            Console.ResetColor();
         }
 
         private static void ShowSuccessMessage(string message)

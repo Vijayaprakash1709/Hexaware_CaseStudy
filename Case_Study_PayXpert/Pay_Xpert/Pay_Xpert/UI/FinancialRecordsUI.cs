@@ -5,55 +5,100 @@ namespace Pay_Xpert.UI
 {
     internal class FinancialRecordsUI
     {
-        
-
         public static void financialRecords()
         {
             FinancialRecordManagementService financialRecord = new FinancialRecordManagementService();
+
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\n\t------------- Financial Reporting --------------");
-                Console.WriteLine("\n\n    1. Add Financial Record");
-                Console.WriteLine("    2. View Financial Record by ID");
-                Console.WriteLine("    3. View All Financial Records for an Employee");
-                Console.WriteLine("    4. View Financial Records for a Specific Date");
-                Console.WriteLine("    5. Exit");
-                Console.WriteLine("\n-----------------------------------------------------------");
-                Console.Write("\nEnter your choice: ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("\n\t===============================================");
+                Console.WriteLine("\t            Financial Reporting Menu           ");
+                Console.WriteLine("\t===============================================\n");
+                Console.ResetColor();
 
-                int choice = int.Parse(Console.ReadLine());
+                Console.WriteLine("\t1. Add Financial Record");
+                Console.WriteLine("\t2. View Financial Record by ID");
+                Console.WriteLine("\t3. View All Financial Records for an Employee");
+                Console.WriteLine("\t4. View Financial Records for a Specific Date");
+                Console.WriteLine("\t5. Exit");
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("\t-----------------------------------------------");
+                Console.ResetColor();
+
+                Console.Write("\n\tEnter your choice (1-5): ");
+                int choice;
+
+                if (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 5)
+                {
+                    ShowErrorMessage("Invalid input! Please enter a number between 1 and 5.");
+                    continue;
+                }
 
                 if (choice == 5)
                 {
-                    Console.WriteLine(".......Thank You!.......");
+                    ShowSuccessMessage("Exiting Financial Record Management. Goodbye!");
                     break;
                 }
+
+                Console.Clear();
 
                 switch (choice)
                 {
                     case 1:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n\t--- Add Financial Record ---\n");
+                        Console.ResetColor();
                         financialRecord.AddFinancialRecord();
                         break;
+
                     case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n\t--- View Financial Record by ID ---\n");
+                        Console.ResetColor();
                         financialRecord.GetFinancialRecordById();
                         break;
+
                     case 3:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n\t--- View All Financial Records for an Employee ---\n");
+                        Console.ResetColor();
                         financialRecord.GetFinancialRecordsForEmployee();
                         break;
+
                     case 4:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n\t--- View Financial Records for a Specific Date ---\n");
+                        Console.ResetColor();
                         financialRecord.GetFinancialRecordsForDate();
                         break;
-                    case 5:
-                        Console.WriteLine("Exiting Financial Record Management. Goodbye!");
-                        return;
+
                     default:
-                        Console.WriteLine("Invalid choice. Please select a valid option.");
+                        ShowErrorMessage("Invalid choice. Please try again.");
                         break;
                 }
-                Console.WriteLine("Press any key to continue...");
+
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("\nPress any key to return to the menu...");
+                Console.ResetColor();
                 Console.ReadKey();
             }
+        }
+
+        private static void ShowSuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\n{message}");
+            Console.ResetColor();
+        }
+
+        private static void ShowErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n{message}");
+            Console.ResetColor();
         }
     }
 }
